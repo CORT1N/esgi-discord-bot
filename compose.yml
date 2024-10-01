@@ -1,0 +1,8 @@
+---
+services:
+  bot:
+    container_name: esgi_bot
+    image: esgi-discord-bot:0.0.1
+    build:
+      context: .
+...
