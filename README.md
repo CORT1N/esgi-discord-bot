@@ -1,0 +1,1 @@
+# (TO DO) Just a Discord Bot helping administrate my school's Discord
