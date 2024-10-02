@@ -1,8 +1,11 @@
 ---
 services:
   bot:
-    container_name: esgi_bot
-    image: esgi-discord-bot:0.0.1
+    container_name: esgi-bot
+    restart: unless-stopped
+    image: esgi-discord-bot:${BOT_VERSION}
     build:
       context: .
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
 ...
