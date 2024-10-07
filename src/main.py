@@ -1,4 +1,4 @@
-# This example requires the 'message_content' intent.
+from data_processing import get_subjects
 
 import discord
 import os
@@ -21,5 +21,10 @@ async def on_message(message):
 
     if message.content.startswith('$hello'):
         await message.channel.send('Hello!')
+
+    if message.content.startswith('$init_year'):
+        await message.channel.send('Placeholder')
+        get_subjects()
+
 
 bot.run(DISCORD_TOKEN)
