@@ -13,10 +13,4 @@ def get_subjects_by_year():
             if subject:
                 subjects.append(subject)
         subjects_by_year[year_of_study] = subjects
-    # Debug 
-    for year_of_study, subjects in subjects_by_year.items():
-        print(f"Year of study: {year_of_study}")
-        print("Subjects:")
-        for subject in subjects:
-            print(f"- {subject}")
     return subjects_by_year

@@ -9,6 +9,7 @@ services:
     environment:
       - DISCORD_TOKEN=${DISCORD_TOKEN}
       - SUBJECTS_FILE_PATH=${SUBJECTS_FILE_PATH}
+      - DISCORD_ADMIN_ROLE_ID= ${DISCORD_ADMIN_ROLE_ID}
     volumes:
       - ./volumes/imports:/tmp/imports
 ...
