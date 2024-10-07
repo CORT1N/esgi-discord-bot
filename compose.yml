@@ -8,6 +8,7 @@ services:
       context: .
     environment:
       - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - SUBJECTS_FILE_PATH=${SUBJECTS_FILE_PATH}
     volumes:
       - ./volumes/imports:/tmp/imports
 ...
