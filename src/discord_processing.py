@@ -9,7 +9,6 @@ async def init_subjects_by_year(subjects_by_year, message):
     DISCORD_TEACHER_ROLE_ID = int(os.getenv('DISCORD_TEACHER_ROLE_ID'))
     teacher_role = next((role for role in message.guild.roles if role.id == DISCORD_TEACHER_ROLE_ID), None)
     for year_of_study, subjects in subjects_by_year.items():
-        print(f"Year of study: {year_of_study}")
         role = next((role for role in message.guild.roles if role.name == year_of_study), None)
         if role is None:
             role = await message.guild.create_role(
@@ -45,9 +44,9 @@ async def init_subjects_by_year(subjects_by_year, message):
                     teacher_role: discord.PermissionOverwrite(view_channel=True)
                 }
             )
-        await category.create_text_channel("général")
+        await category.create_text_channel(os.getenv('DISCORD_GENERAL_BY_CLASS_CHANNEL_NAME'))
         await category.create_text_channel(
-            "sans-profs",
+            os.getenv('DISCORD_WITHOUT_TEACHER_BY_CLASS_CHANNEL_NAME'),
             overwrites={
                 message.guild.default_role: discord.PermissionOverwrite(view_channel=False),
                 role: discord.PermissionOverwrite(view_channel=True),
