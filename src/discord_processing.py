@@ -1,6 +1,8 @@
 import discord
 import os
 
+### ATTENTION : If you try (maybe to debug some problems) too much, Discord Gateway will ban you 12h
+
 async def init_subjects_by_year(subjects_by_year, message):
     DISCORD_TEACHING_MANAGER_ROLE_ID = int(os.getenv('DISCORD_TEACHING_MANAGER_ROLE_ID'))
     teaching_manager_role = next((role for role in message.guild.roles if role.id == DISCORD_TEACHING_MANAGER_ROLE_ID), None)
