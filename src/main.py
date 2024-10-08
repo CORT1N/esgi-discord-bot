@@ -27,6 +27,6 @@ async def on_message(message):
     if message.content.startswith('$init_year'):
         if any(role.id == DISCORD_ADMIN_ROLE_ID for role in message.author.roles):
             subjects_by_year = get_subjects_by_year()
-            init_subjects_by_year(subjects_by_year)
+            await init_subjects_by_year(subjects_by_year, message)
 
 bot.run(DISCORD_TOKEN)
