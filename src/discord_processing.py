@@ -1,3 +1,5 @@
+from data_processing import get_db, save_db
+
 import discord
 import os
 
@@ -73,10 +75,17 @@ async def reset_channels_by_year(old_subjects_by_year, message):
             await role.delete()
             
 async def invite_students(students, general_channel):
+    db = get_db()
     for student in students:
         invitation = await general_channel.create_invite(max_uses=1)
         # Debug
         print(f"Invitation to {student['last_name']} {student['first_name']} : {invitation}")
-        
+        db[invitation.code] = {
+            'mail': student['mail'],
+            'promotion': student['promotion'],
+            'code': student['code'],
+            'member_id': ''
+        }
+    save_db(db)
+
 # async def check_for_role_on_join(student):
-    

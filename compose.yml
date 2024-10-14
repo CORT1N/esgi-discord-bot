@@ -8,6 +8,6 @@ services:
       context: .
     env_file: .env
     volumes:
-      - ./volumes/imports:/tmp/imports
-      - ./volumes/db:/usr/src/db
+      - ./volumes/imports:${IMPORTS_PATH}
+      - ./volumes/db:${DATABASE_PATH}
 ...
