@@ -6,14 +6,8 @@ services:
     image: esgi-discord-bot:${BOT_VERSION}
     build:
       context: .
-    environment:
-      - DISCORD_TOKEN=${DISCORD_TOKEN}
-      - SUBJECTS_FILE_PATH=${SUBJECTS_FILE_PATH}
-      - DISCORD_ADMIN_ROLE_ID=${DISCORD_ADMIN_ROLE_ID}
-      - DISCORD_TEACHING_MANAGER_ROLE_ID=${DISCORD_TEACHING_MANAGER_ROLE_ID}
-      - DISCORD_TEACHER_ROLE_ID=${DISCORD_TEACHER_ROLE_ID}
-      - DISCORD_GENERAL_BY_CLASS_CHANNEL_NAME=${DISCORD_GENERAL_BY_CLASS_CHANNEL_NAME}
-      - DISCORD_WITHOUT_TEACHER_BY_CLASS_CHANNEL_NAME=${DISCORD_WITHOUT_TEACHER_BY_CLASS_CHANNEL_NAME}
+    env_file: .env
     volumes:
       - ./volumes/imports:/tmp/imports
+      - ./volumes/db:/usr/src/db
 ...

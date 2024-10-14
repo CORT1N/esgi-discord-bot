@@ -1,9 +1,7 @@
 import discord
 import os
 
-### ATTENTION : If you try (maybe to debug some problems) too much, Discord Gateway will ban you 12h
-
-async def init_subjects_by_year(subjects_by_year, message):
+async def init_channels_by_year(subjects_by_year, message):
     DISCORD_TEACHING_MANAGER_ROLE_ID = int(os.getenv('DISCORD_TEACHING_MANAGER_ROLE_ID'))
     teaching_manager_role = next((role for role in message.guild.roles if role.id == DISCORD_TEACHING_MANAGER_ROLE_ID), None)
     DISCORD_TEACHER_ROLE_ID = int(os.getenv('DISCORD_TEACHER_ROLE_ID'))
@@ -62,11 +60,9 @@ async def init_subjects_by_year(subjects_by_year, message):
                 await channel.purge()
         for i in range(1,4):
             await category.create_voice_channel(f"Room {i}")
-        
 
-# This function was created to debug init_subjects_by_year() when it stops before the end
-async def reset_subjects_by_year(subjects_by_year, message):
-    for year_of_study, subjects in subjects_by_year.items():
+async def reset_channels_by_year(old_subjects_by_year, message):
+    for year_of_study, subjects in old_subjects_by_year.items():
         category = next((category for category in message.guild.categories if category.name == year_of_study), None)
         if category is not None:
             for channel in category.channels:
@@ -75,4 +71,12 @@ async def reset_subjects_by_year(subjects_by_year, message):
         role = next((role for role in message.guild.roles if role.name == year_of_study), None)
         if role is not None:
             await role.delete()
+            
+async def invite_students(students, general_channel):
+    for student in students:
+        invitation = await general_channel.create_invite(max_uses=1)
+        # Debug
+        print(f"Invitation to {student['last_name']} {student['first_name']} : {invitation}")
         
+# async def check_for_role_on_join(student):
+    
