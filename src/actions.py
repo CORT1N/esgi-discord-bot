@@ -1,7 +1,7 @@
 import os
 
 from data_processing import get_subjects_by_year
-from discord_processing import init_channels_by_year, reset_channels_by_year, reset_roles_by_year
+from discord_processing import *
 
 DISCORD_ADMIN_ROLE_ID = os.getenv('DISCORD_ADMIN_ROLE_ID')
 SUBJECTS_FILE_PATH = os.getenv('SUBJECTS_FILE_PATH')
@@ -13,6 +13,9 @@ old_subjects_by_year = get_subjects_by_year(OLD_SUBJECTS_FILE_PATH)
 async def do(command):
     if command.content == '!init_channels_by_year' and as_permissions(command):
         await init_channels_by_year(subjects_by_year, command)
+        
+    if command.content == '!debug_init_roles_by_year' and as_permissions(command):
+        await debug_init_roles_by_year(subjects_by_year, command)
     
     if command.content == '!reset_channels_by_year' and as_permissions(command):
         await reset_channels_by_year(old_subjects_by_year, command)
